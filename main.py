@@ -1,16 +1,17 @@
-import tensorflow as tf
-from tensorflow import keras
-import numpy as np
-import matplotlib.pyplot as plt
+# first neural network with keras tutorial
+from numpy import loadtxt
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
 
-data = keras.datasets.fashion_mnist
+dataset = loadtxt("pima-indians-diabetes.data.csv", delimiter=",")
 
-(train_images, train_labels), (test_images, test_labels) = data.load_data()
+X = dataset[:,0:8]
+y= dataset[:,8]
 
-class_names = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat',
-               'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
+#define model
+model = Sequential()
+model.add(Dense(12, input_shape=(8,), activation="relu"))
+model.add(Dense(8, activation="relu"))
+model.add(Dense(1, activation="sigmoid"))
 
-train_images = train_images/255.0
-test_images = test_images/255.0
-
-
+model.compile(loss="binary_crossentropy", optimizer="adam", metrics=["accuracy"])
