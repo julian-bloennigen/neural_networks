@@ -3,7 +3,7 @@ from numpy import loadtxt
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
 
-dataset = loadtxt("diabetes.csv", delimiter=",")
+dataset = loadtxt('aboutJulian/neural_networks/main.py', delimiter=",")
 
 X = dataset[:,0:8]
 y= dataset[:,8]
